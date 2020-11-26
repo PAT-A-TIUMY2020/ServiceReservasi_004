@@ -33,7 +33,7 @@ namespace ServiceReservasi
     public class CekLokasi
     {
         [DataMember]
-        public string IDLokasi { get; set; }
+        public string IDLokasi { get; set; } //variabel dari public class
         [DataMember]
         public string NamaLokasi { get; set; }
         [DataMember]
@@ -45,7 +45,7 @@ namespace ServiceReservasi
     public class DetailLokasi
     {
         [DataMember]
-        public string IdLokasi { get; set; }
+        public string IDLokasi { get; set; }
         [DataMember]
         public string NamaLokasi { get; set; }
         [DataMember]
@@ -55,12 +55,12 @@ namespace ServiceReservasi
     }
 
     [DataContract]
-    public class Pemesanan
+    public class Pemesanan //create
     {
         [DataMember]
         public string IdPemesanan { get; set; }
         [DataMember]
-        public string NamaCustomer { get; set; }
+        public string NamaCustomer { get; set; } //method
         [DataMember]
         public string NoTelp { get; set; }
         [DataMember]

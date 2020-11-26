@@ -27,7 +27,7 @@ namespace ServiceReservasi
             List<DetailLokasi> LokasiFull = new List<DetailLokasi>();
             try
             {
-                string sql = "select ID_Lokasi, Nama_Lokasi, Deskripsi_Full, Kuota from dbo.Lokasi";
+                string sql = "select ID_lokasi, Nama_lokasi, Deskripsi_full, Kuota from dbo.Lokasi";
                 connection = new SqlConnection(connectionString);
                 com = new SqlCommand(sql, connection);
                 connection.Open();
@@ -35,8 +35,7 @@ namespace ServiceReservasi
                 while (reader.Read())
                 {
                     DetailLokasi data = new DetailLokasi();
-                    //array
-                    data.IdLokasi = reader.GetString(0);
+                    data.IDLokasi = reader.GetString(0);
                     data.NamaLokasi = reader.GetString(1);
                     data.DeskripsiFull = reader.GetString(2);
                     data.Kuota = reader.GetInt32(3);
@@ -51,22 +50,28 @@ namespace ServiceReservasi
             return LokasiFull;
         }
 
-        public string editPemesanan(string idPemesanan, string namaCustomer)
+        public string editPemesanan(string iDPemesanan, string namaCustomer)
         {
             throw new NotImplementedException();
         }
 
-        public string pemesanan(string IdPemesanan, string NamaCustomer, string NoTelp, int JumlahPemesanan, string IdLokasi)
+        public string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi)
         {
             string a = "gagal";
-            string sql = "insert into dbo.Pemesanan values ('" + IdPemesanan + "','" + NamaCustomer + "','" + NoTelp + "'," + JumlahPemesanan + ",'" + IdLokasi + "')";
-
-            connection = new SqlConnection(connectionString);
-            com = new SqlCommand(sql, connection);
-            connection.Open();
-            com.ExecuteNonQuery();
-            connection.Close();
-            a = "Sukses";
+            try
+            {
+                string sql = "insert into dbo.Pemesanan values ('" + IDPemesanan + "','" + NamaCustomer + "','" + NoTelpon + "'," + JumlahPemesanan + ",'" + IDLokasi + "')";
+                connection = new SqlConnection(connectionString);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
+                a = "Sukses";
+            }
+            catch (Exception es)
+            {
+                Console.WriteLine(es);
+            }
             return a;
         }
 
@@ -80,6 +85,4 @@ namespace ServiceReservasi
             throw new NotImplementedException();
         }
     }
-
-
-}
+    }
